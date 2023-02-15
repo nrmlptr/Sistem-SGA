@@ -116,7 +116,7 @@
             $this->db->where('id_pekerjaan', $id);
             $query = $this->db->update('pekerjaan', $data);
             if($query){
-                redirect('home/index');
+                redirect('home/Home_Admin');
                 // echo 'Data berhasil Diperbarui';
             }else{
                 // echo 'Data gagal diperbarui';
@@ -127,7 +127,7 @@
         //buat metode query untuk apus data sga by id
         public function hapusDataByIdSGA($id){
             $this->db->delete('pekerjaan', array('id_pekerjaan' => $id));
-            redirect('home/index');
+            redirect('home/Home_Admin');
         }
 
         //=====================================================================================================================================================================

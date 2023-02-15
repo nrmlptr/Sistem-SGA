@@ -40,10 +40,10 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="nm_sie">Nama Sie</label>
+                                <label class="col-sm-2 col-form-label" for="nm_sie">Nama Seksi</label>
                                 <div class="col-sm-10">
                                     <select name="nm_sie" id="nm_sie" class="form-control" required>
-                                        <option value="">Pilih Seksie</option>
+                                        <option value="">Pilih Seksi</option>
                                         <?php
                                             foreach($dataSie as $row){
                                                 echo "<option value='".$row->id_sie."'>".$row->nm_sie."</option>";

@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                          <label for="nm_sie" class="col-sm-2 col-form-label">Nama Sie</label>
+                          <label for="nm_sie" class="col-sm-2 col-form-label">Nama Seksi</label>
                           <div class="col-sm-10">
                                <select name="nm_sie" id="nm_sie" class="nm_sie form-control">
                                     <option value="">-PILIH-</option>

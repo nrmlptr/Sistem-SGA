@@ -7,14 +7,14 @@
 
         <!-- Basic Bootstrap Table -->
         <div class="card">
-            <h5 class="card-header">Data Seksie SGA</h5>
+            <h5 class="card-header">Data Seksi SGA</h5>
             <div class="table-responsive text-nowrap">
                 <table class="table">
                     <thead align="center">
                         <tr>
                             <th>No</th>
-                            <th>Nama Sie</th>
-                            <th>Nama Kepala Sie</th>
+                            <th>Nama Seksi</th>
+                            <th>Nama Kepala Seksi</th>
                             <th>Nama Dept</th>
                             <th>Actions</th>
                         </tr>

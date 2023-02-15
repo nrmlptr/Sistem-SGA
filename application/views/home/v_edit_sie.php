@@ -24,13 +24,13 @@
                         <form action="<?php echo base_url('home/proses_edit_sie');?>" method="POST">
                             <input type="hidden" name="id_sie" value="<?php echo $id_sie;?>">
                             <div class="row mb-3 mt-4">
-                                <label class="col-sm-2 col-form-label" for="nm_sie">Nama Seksie</label>
+                                <label class="col-sm-2 col-form-label" for="nm_sie">Nama Seksi</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="nm_sie" name="nm_sie" value="<?php echo  $nm_sie?>"/>
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for="nm_kasie">Nama Kepala Seksie</label>
+                                <label class="col-sm-2 col-form-label" for="nm_kasie">Nama Kepala Seksi</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="nm_kasie" name="nm_kasie" value="<?php echo $nm_kasie?>"/>
                                 </div>

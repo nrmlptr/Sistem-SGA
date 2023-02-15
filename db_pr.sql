@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Feb 2023 pada 08.38
+-- Waktu pembuatan: 15 Feb 2023 pada 02.48
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_pr`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `karyawan`
+--
+
+CREATE TABLE `karyawan` (
+  `id_kyw` int(11) NOT NULL,
+  `nik` varchar(30) NOT NULL,
+  `nm_karyawan` varchar(255) NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `karyawan`
+--
+
+INSERT INTO `karyawan` (`id_kyw`, `nik`, `nm_karyawan`, `alamat`, `created_at`, `updated_at`) VALUES
+(1, '1001', 'Nonik S', 'Karawang', '2023-02-06 03:00:32', NULL),
+(2, '1002', 'Ihan P', 'Jakarta Utara', '2023-02-06 03:00:32', NULL);
 
 -- --------------------------------------------------------
 
@@ -46,7 +69,11 @@ INSERT INTO `pekerjaan` (`id_pekerjaan`, `dept_id`, `sie_id`, `grup_id`, `status
 (4, 10, 7, 7, 'Tahap 1'),
 (5, 4, 10, 10, 'Tahap 1'),
 (6, 10, 8, 8, 'Tahap 5'),
-(16, 1, 2, 2, 'Tahap 4');
+(17, 4, 10, 10, 'Tahap 4'),
+(18, 7, 3, 3, 'Tahap 5'),
+(19, 3, 6, 6, 'Tahap 3'),
+(20, 9, 5, 5, 'Tahap 5'),
+(21, 10, 8, 8, 'Tahap 4');
 
 -- --------------------------------------------------------
 
@@ -75,7 +102,8 @@ INSERT INTO `tb_dept` (`id_dept`, `nm_dept`) VALUES
 (9, 'GAIR'),
 (10, 'FINACT'),
 (11, 'WARHO'),
-(12, 'PRODONE');
+(12, 'PRODONE'),
+(18, 'DEPT TES UPDATE');
 
 -- --------------------------------------------------------
 
@@ -113,7 +141,8 @@ INSERT INTO `tb_grup` (`id_grup`, `nm_grup`, `nm_kagrup`, `no_hp`, `jml`, `sie_i
 (14, 'DESIMAL', 'Rian Ardianto', '', '4', 14),
 (15, 'PINUS', 'Didik Rusdika', '081310506201', '8', 15),
 (16, 'SANGKA KELANA', 'Martin Hidayatulloh', '081317158008', '7', 16),
-(17, 'KUPAS', 'Suharman', '', '7', 17);
+(17, 'KUPAS', 'Suharman', '', '7', 17),
+(24, 'grup update tes', 'ibu kagrup', '0930482903842', '15', 23);
 
 -- --------------------------------------------------------
 
@@ -151,7 +180,8 @@ INSERT INTO `tb_sie` (`id_sie`, `nm_sie`, `nm_kasie`, `dept_id`) VALUES
 (16, 'GRID CASTING DAN PUNCHING', 'Pollin H.Simanullang', 12),
 (17, 'PASTING', 'Mulazim', 0),
 (21, 'FINAL SGA fix 1', 'Retna', 17),
-(22, 'FINAL SIE SGA 2', 'Erina', 17);
+(22, 'FINAL SIE SGA 2', 'Erina', 17),
+(23, 'Seksi Update ', 'Pak update', 18);
 
 -- --------------------------------------------------------
 
@@ -161,23 +191,31 @@ INSERT INTO `tb_sie` (`id_sie`, `nm_sie`, `nm_kasie`, `dept_id`) VALUES
 
 CREATE TABLE `users` (
   `id_user` int(11) NOT NULL,
-  `nama_lengkap` varchar(255) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `upass` varchar(255) NOT NULL,
+  `username` varchar(15) NOT NULL,
+  `upass` varchar(15) NOT NULL,
+  `akses` varchar(3) NOT NULL COMMENT '1admin,2juri',
+  `id_pengguna` int(3) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `update_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id_user`, `nama_lengkap`, `username`, `upass`, `created_at`, `update_at`) VALUES
-(1, 'Nonik S', 'noniks', 'tes123', '2023-01-13 04:04:29', NULL);
+INSERT INTO `users` (`id_user`, `username`, `upass`, `akses`, `id_pengguna`, `created_at`, `updated_at`) VALUES
+(1, 'noniks', 'tes123', '2', 1, '2023-02-06 03:06:39', NULL),
+(2, 'Ihanp', 'tes999', '1', 2, '2023-02-06 03:06:39', NULL);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indeks untuk tabel `karyawan`
+--
+ALTER TABLE `karyawan`
+  ADD PRIMARY KEY (`id_kyw`);
 
 --
 -- Indeks untuk tabel `pekerjaan`
@@ -212,41 +250,48 @@ ALTER TABLE `tb_sie`
 -- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id_user`),
+  ADD KEY `CONSTRAINT_PENGGUNA` (`id_pengguna`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `karyawan`
+--
+ALTER TABLE `karyawan`
+  MODIFY `id_kyw` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT untuk tabel `pekerjaan`
 --
 ALTER TABLE `pekerjaan`
-  MODIFY `id_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_dept`
 --
 ALTER TABLE `tb_dept`
-  MODIFY `id_dept` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_dept` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_grup`
 --
 ALTER TABLE `tb_grup`
-  MODIFY `id_grup` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_grup` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_sie`
 --
 ALTER TABLE `tb_sie`
-  MODIFY `id_sie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_sie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -265,6 +310,12 @@ ALTER TABLE `pekerjaan`
 --
 ALTER TABLE `tb_grup`
   ADD CONSTRAINT `constraint_sie` FOREIGN KEY (`sie_id`) REFERENCES `tb_sie` (`id_sie`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `CONSTRAINT_PENGGUNA` FOREIGN KEY (`id_pengguna`) REFERENCES `karyawan` (`id_kyw`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

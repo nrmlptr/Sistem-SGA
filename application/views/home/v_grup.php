@@ -17,7 +17,7 @@
                             <th>Nama Kepala Grup</th>
                             <th>NO HP</th>
                             <th>Jumlah Anggota</th>
-                            <th>Nama Sie</th>
+                            <th>Nama Seksi</th>
                             <th>Actions</th>
                         </tr>
                     </thead>

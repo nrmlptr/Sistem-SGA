@@ -11,8 +11,8 @@
                     <tr align="center">
                         <th rowspan="2" align="center">No</th>
                         <th rowspan="2" align="center">Nama Dept</th>
-                        <th rowspan="2" align="center">Nama Sie</th>
-                        <th rowspan="2" align="center">Nama Kasie</th>
+                        <th rowspan="2" align="center">Nama Seksi</th>
+                        <th rowspan="2" align="center">Nama Kasi</th>
                         <th rowspan="2" align="center">Nama Grup</th>
                         <th colspan="2" align="center">Grup</th>
                         <th rowspan="2" align="center">Jumlah Anggota</th>

@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label" for=s"namaSie">Nama Sie</label>
+                                <label class="col-sm-2 col-form-label" for=s"namaSie">Nama Seksi</label>
                                 <div class="col-sm-10">
                                     <select name="namaSie" id="namaSie" class="form-control" required>
                                         <?php

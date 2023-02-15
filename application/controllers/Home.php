@@ -5,14 +5,26 @@
         function __construct(){
             parent::__construct();
         
-            if($this->session->userdata('status') != "login"){
+            if($this->session->userdata('logged_in') == FALSE){
                 redirect(base_url("login"));
             }
             $this->load->model("M_sga");
         }
     
         //buat metode untuk menampilkan data sga yang ada di database
-        public function index(){
+        // public function index(){
+        //     $this->load->model('M_sga'); //panggil model sga nya
+        //     $data['list_sga'] =  $this->M_sga->getSGA(); //buat variabel data dengan array di dalamnya, dipakai ketika foreach di view
+
+
+        //     $this->load->view('template/header');
+        //     $this->load->view('home/v_home', $data);
+        //     $this->load->view('template/footer');
+        // }
+
+        //==================================================================================================================================
+        //BUAT METODE UNTUK TAMPILKAN HALAMAN AKSES ADMIN
+        public function Home_Admin(){
             $this->load->model('M_sga'); //panggil model sga nya
             $data['list_sga'] =  $this->M_sga->getSGA(); //buat variabel data dengan array di dalamnya, dipakai ketika foreach di view
 
@@ -76,7 +88,7 @@
 
             $prosesSimpan = $this->M_sga->save_sga($data);
             if($prosesSimpan == 1){
-                redirect('Home/index');
+                redirect('Home/Home_Admin');
             }else{
                 redirect('Home/add_sga');
             }
@@ -420,6 +432,22 @@
         }
 
         //======================================================================================================================================================================
+
+        //BUAT METODE UNTUK SHOW HALAMAN AKSES JURI
+        public function Home_Juri(){
+            $this->load->model('M_sga'); //panggil model sga nya
+            $data['list_sga'] =  $this->M_sga->getSGA(); //buat variabel data dengan array di dalamnya, dipakai ketika foreach di view
+
+
+            $this->load->view('template/header');
+            $this->load->view('juri/v_home', $data);
+            $this->load->view('template/footer');
+        }
+
+        //metode untuk masuk kehalaman penilaian juri
+        public function addScore(){
+
+        }
     }
 
 ?>

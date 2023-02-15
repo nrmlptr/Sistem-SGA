@@ -14,7 +14,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
 
-    <title>Home-EHS Dept</title>
+    <title>Home SGA - EHS Dept</title>
 
     <meta name="description" content="" />
 
@@ -62,7 +62,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -129,48 +129,58 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item active">
-              <a href="<?php echo base_url('Home/index')?>" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
-              </a>
-            </li>
+            <?php if($this->session->userdata('akses') == 1){ ?>  
+              <li class="menu-item active">
+                <a href="<?= base_url('Home/Home_Admin');?>" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                  <div data-i18n="Analytics">Dashboard</div>
+                </a>
+              </li>
+            <?php }elseif($this->session->userdata('akses') == 2){?>
+              <li class="menu-item active">
+                <a href="<?= base_url('Home/Home_Juri');?>" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                  <div data-i18n="Analytics">Dashboard</div>
+                </a>
+              </li>
+            <?php } ?>
+            <?php if($this->session->userdata('akses') == 1){ ?>
+              <!-- Layouts -->
+              <li class="menu-item">
+                <a href="javascript:void(0);" class="menu-link menu-toggle">
+                  <i class="menu-icon tf-icons bx bx-layout"></i>
+                  <div data-i18n="Layouts">MASTER DATA</div>
+                </a>
 
-            <!-- Layouts -->
-            <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Layouts">MASTER DATA</div>
-              </a>
-
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="<?php echo base_url('Home/show_dept')?>" class="menu-link">
-                    <div data-i18n="Without menu">Data Department</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="<?php echo base_url('Home/show_sie')?>" class="menu-link">
-                    <div data-i18n="Without navbar">Data Seksie</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="<?php echo base_url('Home/show_grup')?>" class="menu-link">
-                    <div data-i18n="Container">Data Grup</div>
-                  </a>
-                </li>
-                <!-- <li class="menu-item">
-                  <a href="layouts-fluid.html" class="menu-link">
-                    <div data-i18n="Fluid">Fluid</div>
-                  </a>
-                </li> -->
-                <!-- <li class="menu-item">
-                  <a href="layouts-blank.html" class="menu-link">
-                    <div data-i18n="Blank">Blank</div>
-                  </a>
-                </li> -->
-              </ul>
-            </li>
+                <ul class="menu-sub">
+                  <li class="menu-item">
+                    <a href="<?php echo base_url('Home/show_dept')?>" class="menu-link">
+                      <div data-i18n="Without menu">Data Department</div>
+                    </a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="<?php echo base_url('Home/show_sie')?>" class="menu-link">
+                      <div data-i18n="Without navbar">Data Seksie</div>
+                    </a>
+                  </li>
+                  <li class="menu-item">
+                    <a href="<?php echo base_url('Home/show_grup')?>" class="menu-link">
+                      <div data-i18n="Container">Data Grup</div>
+                    </a>
+                  </li>
+                  <!-- <li class="menu-item">
+                    <a href="layouts-fluid.html" class="menu-link">
+                      <div data-i18n="Fluid">Fluid</div>
+                    </a>
+                  </li> -->
+                  <!-- <li class="menu-item">
+                    <a href="layouts-blank.html" class="menu-link">
+                      <div data-i18n="Blank">Blank</div>
+                    </a>
+                  </li> -->
+                </ul>
+              </li>
+            <?php } ?>
 
             <!-- <li class="menu-header small text-uppercase">
               <span class="menu-header-text">Pages</span>
@@ -508,7 +518,7 @@
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">Admin</span>
+                            <span class="fw-semibold d-block"><?php echo 'Hallo - ' . $this->session->userdata('username')?></span>
                             <!-- <small class="text-muted">Admin</small> -->
                           </div>
                         </div>
