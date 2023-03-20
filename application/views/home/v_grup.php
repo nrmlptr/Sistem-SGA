@@ -7,14 +7,14 @@
 
         <!-- Basic Bootstrap Table -->
         <div class="card">
-            <h5 class="card-header">Data Grup SGA</h5>
+            <h5 class="card-header">Data Group SGA - PT CBI</h5>
             <div class="table-responsive text-nowrap">
                 <table class="table">
                     <thead align="center">
                         <tr>
                             <th>No</th>
-                            <th>Nama Grup</th>
-                            <th>Nama Kepala Grup</th>
+                            <th>Nama Group</th>
+                            <th>Leader Group</th>
                             <th>NO HP</th>
                             <th>Jumlah Anggota</th>
                             <th>Nama Seksi</th>
@@ -33,8 +33,8 @@
                                 <td><?php echo $data['jml']?></td>
                                 <td><?php echo $data['nm_sie']?></td>
                                 <td class="text-center">
-                                    <a href="<?php echo base_url('home/perbaruidataGrup/'.$data['id_grup']);?>" class="btn btn-success">EDIT</a>
-                                    <a href="<?php echo base_url('home/hapusDataByIdGrup/'.$data['id_grup']);?>" class="btn btn-danger btn-hapus" onclick="return confirm('Apakah Anda Yakin Akan Menghapus Data?')">DELETE</a>
+                                    <a href="<?php echo base_url('home/perbaruidataGrup/'.$data['id_grup']);?>" class="btn btn-success"><i class='bx bx-edit'></i></a>
+                                    <a href="<?php echo base_url('home/hapusDataByIdGrup/'.$data['id_grup']);?>" class="btn btn-danger btn-hapus" onclick="return confirm('Apakah Anda Yakin Akan Menghapus Data?')"><i class='bx bxs-trash'></i></a>
                                 </td>
                             </tr> 
                         <?php } ?>

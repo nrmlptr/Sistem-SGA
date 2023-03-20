@@ -7,7 +7,7 @@
 
         <!-- Basic Bootstrap Table -->
         <div class="card">
-            <h5 class="card-header">Data Department</h5>
+            <h5 class="card-header">Data Department SGA - PT CBI</h5>
             <div class="table-responsive text-nowrap">
                 <table class="table">
                     <thead align="center">
@@ -25,8 +25,8 @@
                                 <td><?php echo $loop++?></td>
                                 <td><?php echo $data->nm_dept?></td>
                                 <td class="text-center">
-                                    <a href="<?php echo base_url('home/perbaruidataDept/'.$data->id_dept);?>" class="btn btn-success">EDIT</a>
-                                    <a href="<?php echo base_url('home/hapusDataByIdDept/'.$data->id_dept);?>" class="btn btn-danger btn-hapus" onclick="return confirm('Apakah Anda Yakin Akan Menghapus Data?')">DELETE</a>
+                                    <a href="<?php echo base_url('home/perbaruidataDept/'.$data->id_dept);?>" class="btn btn-success"><i class='bx bx-edit'></i></a>
+                                    <a href="<?php echo base_url('home/hapusDataByIdDept/'.$data->id_dept);?>" class="btn btn-danger btn-hapus" onclick="return confirm('Apakah Anda Yakin Akan Menghapus Data?')"><i class='bx bxs-trash'></i></a>
                                 </td>
                             </tr> 
                         <?php } ?>

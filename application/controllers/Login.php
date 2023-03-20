@@ -35,7 +35,23 @@ class Login extends CI_Controller {
 			if($getUser->akses == 1){
 				redirect('home/Home_Admin');
 			}elseif($getUser->akses == 2){
-				redirect('home/Home_Juri');
+				// // //deklarasikan logged_at
+				// $identifier = $this->session->set_userdata('Juri 1');
+            	// $logged_at = date('Y-m-d');
+
+				// //bandingkan inputan dengan data tersimpan di db
+				// $this->load->model('M_login');
+				// $cekLog = $this->M_login->cek_logjuri($identifier,$logged_at);
+				// var_dump($cekLog);die;
+				// if($cekLog){
+				// 	$this->session->set_userdata('Juri 1');
+					redirect('home/Home_Juri');
+				// }else{
+				// 	// $this->session->set_userdata('Juri ');
+				// }redirect('Login/index');
+
+				
+				
 			}
 		}
 	}

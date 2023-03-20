@@ -18,7 +18,7 @@
         <meta name="description" content="" />
 
         <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="<?php echo base_url('assets/sneatadmin/assets');?>/img/favicon/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="<?php echo base_url('assets/sneatadmin/assets');?>/img/favicon/k3logo.ico" />
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -62,7 +62,7 @@
                             <!-- Logo -->
                             <div class="app-brand justify-content-center">
                                 <a href="index.html" class="app-brand-link gap-2">
-                                    <span class="app-brand-logo demo">
+                                    <!-- <span class="app-brand-logo demo">
                                         <svg
                                             width="25"
                                             viewBox="0 0 25 42"
@@ -115,7 +115,10 @@
                                                 </g>
                                             </g>
                                         </svg>
-                                    </span>
+                                    </span> -->
+                                    <div class="avatar">
+                                        <img src="<?php echo base_url('assets/sneatadmin/assets');?>/img/avatars/logo k3 hijau.png" alt class="w-px-40 h-auto rounded-circle" />
+                                    </div>
                                     <span class="app-brand-text demo text-body fw-bolder">EHS Dept</span>
                                 </a>
                             </div>

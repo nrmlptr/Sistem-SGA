@@ -1,6 +1,6 @@
 <!-- Content -->
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>TAMBAH DATA SGA</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>TAMBAH DATA PESERTA SGA - PT CBI</h4>
 
   <!-- Basic Layout & Basic with Icons -->
     <div class="row">
@@ -8,11 +8,18 @@
         <div class="col-xxl">
             <div class="card mb-4">
                 <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="mb-0">Tambah Data SGA</h5>
+                    <h5 class="mb-0">Form Tambah Data Peserta SGA</h5>
                     <!-- <small class="text-muted float-end">Default label</small> -->
                 </div>
                 <div class="card-body">
                     <form action="<?php echo base_url('home/proses_simpan');?>" method="POST">
+
+                        <div class="row mb-3 mt-4">
+                          <label for="tanggal" class="col-sm-2 col-form-label">Tanggal</label>
+                          <div class="col-sm-2">
+                                <input type="date" class="form-control" name="tanggal" value="<?= date('Y-m-d')?>" readonly>
+                          </div>
+                        </div>
                         <div class="row mb-3 mt-4">
                           <label for="nm_dept" class="col-sm-2 col-form-label">Nama Dept</label>   
                             <div class="col-sm-10">
@@ -34,7 +41,7 @@
                         </div> 
                         <div class="col-md-3 mb-2"></div>  
                         <div class="row mb-3">
-                          <label for="nm_grup" class="col-sm-2 col-form-label">Nama Grup</label>
+                          <label for="nm_grup" class="col-sm-2 col-form-label">Nama Group</label>
                           <div class="col-sm-10">
                                <select name="nm_grup" id="nm_grup" class="nm_grup form-control">
                                     <option value="">-PILIH-</option>
@@ -60,7 +67,7 @@
                         </div>
                         <div class="row justify-content-end">
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary">Save</button> || <button class="btn btn-warning"><a href="<?php echo base_url('home/index');?>">Cancel</a></button>
+                                <button type="submit" class="btn btn-primary">Save</button> || <button class="btn btn-warning"><a href="<?php echo base_url('home/Home_Admin');?>">Cancel</a></button>
                             </div>
                         </div>
                     </form>

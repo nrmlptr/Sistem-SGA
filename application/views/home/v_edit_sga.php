@@ -38,7 +38,7 @@
 
                                     </select> -->
                                 </div>
-                                <button type="submit" class="btn btn-primary">Update</button> || <button class="btn btn-warning"><a href="<?php echo base_url('home/index');?>">Cancel</a></button>
+                                <button type="submit" class="btn btn-primary">Update</button> || <button class="btn btn-warning"><a href="<?php echo base_url('home/Home_Admin');?>">Cancel</a></button>
                             </form>
                         </div>
                     </div>

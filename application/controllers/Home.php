@@ -34,6 +34,79 @@
             $this->load->view('template/footer');
         }
 
+        public function viewScore(){
+            $this->load->model('M_sga'); //panggil model sga nya
+            $data['listGrup'] =  $this->M_sga->getPesertaSGA(); //panggil grup yg ikut serta dalam sga, dari tabel pekerjaan
+            $jumlah_baris = $this->M_sga->count_rows(); //untuk mengambil berapa banyak data juri 
+            $data['jumlah_baris'] = $jumlah_baris; 
+
+            $dataScore = $this->M_sga->getTscore();
+            $data['scoreT'] = $dataScore;
+
+            // var_dump($dataScore);die;
+
+            $this->load->view('template/header');
+            $this->load->view('home/v_score', $data);
+            $this->load->view('template/footer');
+        }
+
+        public function viewDoc()
+        {
+            $data['doc'] = $this->db->get('document'); //ambil tabel berkas dari db
+            $this->load->view('template/header');
+            $this->load->view('upload/v_showDoc', $data);
+            $this->load->view('template/footer');
+        }
+
+        //metode untuk buka form upload dokumen
+        function upDoc()
+        {
+            $this->load->model('M_sga');
+            $x['kd_doc'] = $this->M_sga->buatKodeDoc(); //variabel untuk kode dokumen otomatis
+            //  var_dump($x['kd_doc']);die; 
+
+            $this->load->view('template/header');
+            $this->load->view('upload/v_uploadDoc', $x);
+            $this->load->view('template/footer');
+        }
+
+        //metode untuk proses upload dokumen ke sistem
+        function prosesUploadDoc(){
+            // var_dump($_POST);die;
+            $config['upload_path']          = './documents/';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg|mp4|pdf|doc|docx|xlsx|xls|pptx';
+            $config['max_size']             = 20480;
+            $config['max_width']            = 10240;
+            $config['max_height']           = 10240;
+            $config['encrypt_name']			= FALSE;
+            $this->load->library('upload', $config);
+            if ( ! $this->upload->do_upload('berkas'))
+            {
+                $error = array('error' => $this->upload->display_errors());
+                $this->load->view('upload/v_uploadDoc', $error);
+            }else{
+                $data['tgl_upload'] = $this->input->post('tgl_upload');
+                $data['kd_doc'] = $this->input->post('kd_doc');
+                $data['nm_grup'] = $this->input->post('nm_grup');
+                $data['nm_doc'] = $this->upload->data("file_name");
+                $data['keterangan_doc'] = $this->input->post('keterangan_doc');
+                $data['tipe_doc'] = $this->upload->data('file_ext');
+                $data['ukuran_doc'] = $this->upload->data('file_size');
+                $this->db->insert('document', $data);
+
+
+                redirect('Home/viewDoc');
+            }
+        }
+
+        //metode untuk download berkas yg tadi di upload berdasarkan id berkas 
+        function downloadDoc($id)
+        { 
+            $data = $this->db->get_where('document',['id_doc'=>$id])->row();
+
+            force_download('documents/'.$data->nm_doc,NULL);
+        }
+
         // function get_siebydept(){
         //     $dept_id = $this->input->post('dept_id',TRUE);
         //     $data = $this->M_sga->get_siebydept($dept_id)->result();
@@ -80,6 +153,7 @@
         public function proses_simpan(){
             $this->load->model('M_sga');
             $data = array(
+                "tanggal" => $this->input->post("tanggal"),
                 "dept_id" => $this->input->post("nm_dept"),
                 "sie_id" => $this->input->post("nm_sie"),
                 "grup_id" => $this->input->post("nm_grup"),
@@ -436,17 +510,65 @@
         //BUAT METODE UNTUK SHOW HALAMAN AKSES JURI
         public function Home_Juri(){
             $this->load->model('M_sga'); //panggil model sga nya
-            $data['list_sga'] =  $this->M_sga->getSGA(); //buat variabel data dengan array di dalamnya, dipakai ketika foreach di view
+            $data['listGrup'] =  $this->M_sga->getPesertaSGA(); //panggil grup yg ikut serta dalam sga, dari tabel pekerjaan
+            $jumlah_baris = $this->M_sga->count_rows(); //untuk mengambil berapa banyak data juri 
+            $data['jumlah_baris'] = $jumlah_baris; 
 
+            $dataScore = $this->M_sga->getTscore();
+            $data['scoreT'] = $dataScore;
+
+            // var_dump($dataScore);die;
 
             $this->load->view('template/header');
             $this->load->view('juri/v_home', $data);
             $this->load->view('template/footer');
         }
 
-        //metode untuk masuk kehalaman penilaian juri
-        public function addScore(){
+        //metode untuk masuk kehalaman penilaian juri form risalah
+        public function addScore($id_pekerjaan){
+            // echo "ini tempat untuk kasih nilai";
+            $this->load->model('M_sga');
 
+            $data['sga'] = $this->M_sga->getNamaSGAById($id_pekerjaan);
+
+            $this->load->view('template/header');
+            $this->load->view('juri/v_addScore', $data);
+            $this->load->view('template/footer');
+
+        }
+
+        public function savePoint(){
+            $this->load->model('M_sga');
+            $data = array(
+                // "id_nilai" => $this->input->post("id_nilai"),
+                "pekerjaan_id" => $this->input->post("pekerjaan_id"),
+                "tgl_penilaian" => $this->input->post("tgl_penilaian"),
+                "nm_juri" => $this->input->post("nm_juri"),
+                "metode_penyusunan_risalah" => $this->input->post("metode_penyusunan_risalah"),
+                "data_pendukung_aktivitas_grup" => $this->input->post("data_pendukung_aktivitas_grup"),
+                "identifikasi_masalah" => $this->input->post("identifikasi_masalah"),
+                "safety_mapping" => $this->input->post("safety_mapping"),
+                "analysis" => $this->input->post("analysis"),
+                "rencana_perbaikan" => $this->input->post("rencana_perbaikan"),
+                "laporan_perbaikan" => $this->input->post("laporan_perbaikan"),
+                "rank_down" => $this->input->post("rank_down"),
+                "justifikasi_atasan" => $this->input->post("justifikasi_atasan"),
+                "pemahaman_materi" => $this->input->post("pemahaman_materi"),
+                "sistematika" => $this->input->post("sistematika"),
+                "cara_penyampaian" => $this->input->post("cara_penyampaian"),
+                "keterangan_sga_step_7" => $this->input->post("keterangan_sga_step_7"),
+                "total_score" => $this->input->post("total_score")                                
+            );
+
+            // var_dump($data);die; //<- cek data yg diinput berhasil terkirim ga?
+            // array(5) { ["id_grup"]=> string(0) "" ["nm_grup"]=> string(7) "TESGRUP" ["nm_kagrup"]=> string(5) "GATAU" ["no_hp"]=> string(5) "21321" ["sie_id"]=> string(1) "3" }
+           
+            $loadsavePoint = $this->M_sga->pointSave($data);
+            if($loadsavePoint == 1){
+                redirect('Home/Home_Juri');
+            }else{
+                redirect('Home/addScore');
+            } 
         }
     }
 

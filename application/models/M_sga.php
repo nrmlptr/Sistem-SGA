@@ -99,7 +99,7 @@
             return $query->result();
         }
 
-        //=====================================================================================================================================================================
+        //============================================================ CRUD DATA SGA =========================================================================================================
 
         //membuat metode model untuk menyimpan data sga 
         function save_sga($data){
@@ -130,7 +130,7 @@
             redirect('home/Home_Admin');
         }
 
-        //=====================================================================================================================================================================
+        //======================================================================== dept =============================================================================================
         //buat model untuk simpan data dept
         public function simpan_dept($data){
             $data = array(
@@ -169,7 +169,7 @@
             redirect('home/show_dept');
         }
 
-        //=====================================================================================================================================================================
+        //==================================================================================== seksi =======================================================
 
         //membuat metode model untuk menyimpan data seksie
         public function save_sie($data){
@@ -200,7 +200,7 @@
             redirect('home/show_sie');
         }
 
-        //======================================================================================================================================================================
+        //=================================================================== grup ===================================================================
 
         //membuat metode model untuk menyimpan data grup 
         public function save_grup($data){
@@ -229,6 +229,89 @@
         public function deltByIdGrup($id){
             $this->db->delete('tb_grup', array('id_grup' => $id));
             redirect('home/show_grup');
+        }
+
+        //============================================================= juri =======================================================================
+        //buat metode untuk ditampilkan pada saat form input score oleh tiap juri
+        public function getNamaSGAById($id_pekerjaan){
+            // $this->db->select('nilai_risalah.*, tgl_penilaian as tanggal, pekerjaan.status, tb_grup.nm_grup');
+            $this->db->select('pekerjaan.*, pekerjaan.status as status_pekerjaan, tb_dept.nm_dept,tb_sie.nm_sie,tb_sie.nm_kasie,tb_grup.nm_grup,tb_grup.nm_kagrup,tb_grup.no_hp,tb_grup.jml');
+            
+            // // $this->db->from('pekerjaan');
+            // $this->db->join('pekerjaan', 'pekerjaan.id_pekerjaan = nilai_risalah.pekerjaan_id');
+            $this->db->join('tb_dept','tb_dept.id_dept = pekerjaan.dept_id');
+            $this->db->join('tb_sie','tb_sie.id_sie = pekerjaan.sie_id');
+            $this->db->join('tb_grup','tb_grup.id_grup = pekerjaan.grup_id');
+            $query = $this->db->get_where('pekerjaan', array('id_pekerjaan' => $id_pekerjaan));
+            return $query->result();
+        }
+
+        //metode untuk tampilkan data peserta sga yang ada pada home juri
+        public function getPesertaSGA(){
+            $this->db->select('pekerjaan.*, pekerjaan.status as status_pekerjaan, pekerjaan.id_pekerjaan,pekerjaan.tanggal,tb_dept.nm_dept,tb_sie.nm_sie,tb_sie.nm_kasie,tb_grup.nm_grup,tb_grup.nm_kagrup,tb_grup.no_hp,tb_grup.jml');
+            $this->db->from('pekerjaan');
+            $this->db->join('tb_dept','tb_dept.id_dept = pekerjaan.dept_id');
+            $this->db->join('tb_sie','tb_sie.id_sie = pekerjaan.sie_id');
+            $this->db->join('tb_grup','tb_grup.id_grup = pekerjaan.grup_id');
+            return $this->db->get()->result_array();
+        }
+
+        //metode get nilai pada view home untuk juri
+        public function getNilai(){
+            $this->db->select('*');
+            $this->db->from('nilai_risalah');
+            $query = $this->db->get();
+            return $query->result();
+        }
+
+        //metode untuk ambil nilai total score ditampilkan pada home juri i
+        public function getTscore(){
+            $this->db->select('total_score');
+            $this->db->from('nilai_risalah');
+            $query = $this->db->get();
+            return $query->result();
+        }
+
+        //metode untuk menghitung ada berapa juri yang terdaftar di tabel users, untuk meloop kolom pada dashboard juri
+        public function count_rows() {
+            $this->db->select('username');
+            $this->db->where('akses', 2); //untuk mengambil data juri 
+            $query = $this->db->get('users'); 
+            
+            return $query->num_rows();
+        }
+
+        //metode untuk buat kode otomatis for berkas presentasi peserta 
+        public function buatKodeDoc(){
+            $this->db->select('RIGHT(document.kd_doc,5) as kd_doc', FALSE);
+            $this->db->order_by('kd_doc','DESC');    
+            $this->db->limit(1);    
+            $query = $this->db->get('document');
+                if($query->num_rows() <> 0){      
+                    $data = $query->row();
+                    $kode = intval($data->kd_doc) + 1; 
+                }
+                else{      
+                    $kode = 1;  
+                }
+            $batas = str_pad($kode, 5, "0", STR_PAD_LEFT);    
+            $kodetampil = "DOC-PPT-".$batas;
+            return $kodetampil;  
+        }
+
+        //metode untuk simpan point yang diberi tiap juri
+        public function pointSave($data){
+            $proses = $this->db->insert('nilai_risalah', $data);
+            if($proses){
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+        
+        //metode untuk get juri yang sudah kasih nilai atau belum, supaya kondisi button muncul atau tidak
+        public function getDataJuri($id_pekerjaan, $nama_juri) {
+            return $this->db->get_where('nilai_risalah', array('pekerjaan_id' => $id_pekerjaan, 'nm_juri' => $nama_juri))->num_rows();
         }
     }
 

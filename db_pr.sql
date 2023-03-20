@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Feb 2023 pada 02.48
+-- Waktu pembuatan: 20 Mar 2023 pada 10.10
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_pr`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `document`
+--
+
+CREATE TABLE `document` (
+  `id_doc` int(11) NOT NULL,
+  `tgl_upload` date NOT NULL,
+  `kd_doc` varchar(255) NOT NULL,
+  `nm_grup` varchar(255) NOT NULL,
+  `nm_doc` varchar(255) NOT NULL,
+  `keterangan_doc` varchar(255) NOT NULL,
+  `tipe_doc` varchar(100) NOT NULL,
+  `ukuran_doc` float NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -42,7 +61,40 @@ CREATE TABLE `karyawan` (
 
 INSERT INTO `karyawan` (`id_kyw`, `nik`, `nm_karyawan`, `alamat`, `created_at`, `updated_at`) VALUES
 (1, '1001', 'Nonik S', 'Karawang', '2023-02-06 03:00:32', NULL),
-(2, '1002', 'Ihan P', 'Jakarta Utara', '2023-02-06 03:00:32', NULL);
+(2, '1002', 'Ihan P', 'Jakarta Utara', '2023-02-06 03:00:32', NULL),
+(3, '1003', 'Ahmad Zaelani', 'Kosambi', '2023-02-15 03:36:11', NULL),
+(4, '1004', 'Sugiyanto', 'Karawang Timur', '2023-02-15 03:36:11', NULL),
+(5, '1005', 'Dedi Ruhmat', 'Jakarta Timur', '2023-02-15 03:36:11', NULL),
+(6, '1006', 'Bambang S', 'Jakarta Utara', '2023-02-15 03:36:11', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `nilai_risalah`
+--
+
+CREATE TABLE `nilai_risalah` (
+  `id_nilai` int(11) NOT NULL,
+  `tgl_penilaian` date NOT NULL,
+  `pekerjaan_id` int(3) NOT NULL,
+  `nm_juri` varchar(255) NOT NULL,
+  `metode_penyusunan_risalah` int(11) NOT NULL,
+  `data_pendukung_aktivitas_grup` int(11) NOT NULL,
+  `identifikasi_masalah` int(11) NOT NULL,
+  `safety_mapping` int(11) NOT NULL,
+  `analysis` int(11) NOT NULL,
+  `rencana_perbaikan` int(11) NOT NULL,
+  `laporan_perbaikan` int(11) NOT NULL,
+  `rank_down` int(11) NOT NULL,
+  `justifikasi_atasan` int(11) NOT NULL,
+  `pemahaman_materi` int(11) NOT NULL,
+  `sistematika` int(11) NOT NULL,
+  `cara_penyampaian` int(11) NOT NULL,
+  `keterangan_sga_step_7` int(11) NOT NULL,
+  `total_score` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -52,28 +104,12 @@ INSERT INTO `karyawan` (`id_kyw`, `nik`, `nm_karyawan`, `alamat`, `created_at`, 
 
 CREATE TABLE `pekerjaan` (
   `id_pekerjaan` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
   `dept_id` int(11) NOT NULL,
   `sie_id` int(11) NOT NULL,
   `grup_id` int(11) NOT NULL,
   `status` enum('Tahap 1','Tahap 2','Tahap 3','Tahap 4','Tahap 5','Tahap 6','Tahap 7','Finish') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `pekerjaan`
---
-
-INSERT INTO `pekerjaan` (`id_pekerjaan`, `dept_id`, `sie_id`, `grup_id`, `status`) VALUES
-(1, 8, 1, 1, 'Finish'),
-(2, 3, 6, 6, 'Finish'),
-(3, 2, 4, 4, 'Tahap 1'),
-(4, 10, 7, 7, 'Tahap 1'),
-(5, 4, 10, 10, 'Tahap 1'),
-(6, 10, 8, 8, 'Tahap 5'),
-(17, 4, 10, 10, 'Tahap 4'),
-(18, 7, 3, 3, 'Tahap 5'),
-(19, 3, 6, 6, 'Tahap 3'),
-(20, 9, 5, 5, 'Tahap 5'),
-(21, 10, 8, 8, 'Tahap 4');
 
 -- --------------------------------------------------------
 
@@ -102,8 +138,7 @@ INSERT INTO `tb_dept` (`id_dept`, `nm_dept`) VALUES
 (9, 'GAIR'),
 (10, 'FINACT'),
 (11, 'WARHO'),
-(12, 'PRODONE'),
-(18, 'DEPT TES UPDATE');
+(12, 'PRODONE');
 
 -- --------------------------------------------------------
 
@@ -141,8 +176,7 @@ INSERT INTO `tb_grup` (`id_grup`, `nm_grup`, `nm_kagrup`, `no_hp`, `jml`, `sie_i
 (14, 'DESIMAL', 'Rian Ardianto', '', '4', 14),
 (15, 'PINUS', 'Didik Rusdika', '081310506201', '8', 15),
 (16, 'SANGKA KELANA', 'Martin Hidayatulloh', '081317158008', '7', 16),
-(17, 'KUPAS', 'Suharman', '', '7', 17),
-(24, 'grup update tes', 'ibu kagrup', '0930482903842', '15', 23);
+(17, 'KUPAS', 'Suharman', '', '7', 17);
 
 -- --------------------------------------------------------
 
@@ -178,10 +212,7 @@ INSERT INTO `tb_sie` (`id_sie`, `nm_sie`, `nm_kasie`, `dept_id`) VALUES
 (14, 'COMPONENT', 'Kautzar', 11),
 (15, 'KOSONG', 'Kirana Dyah', 5),
 (16, 'GRID CASTING DAN PUNCHING', 'Pollin H.Simanullang', 12),
-(17, 'PASTING', 'Mulazim', 0),
-(21, 'FINAL SGA fix 1', 'Retna', 17),
-(22, 'FINAL SIE SGA 2', 'Erina', 17),
-(23, 'Seksi Update ', 'Pak update', 18);
+(17, 'PASTING', 'Mulazim', 6);
 
 -- --------------------------------------------------------
 
@@ -194,7 +225,6 @@ CREATE TABLE `users` (
   `username` varchar(15) NOT NULL,
   `upass` varchar(15) NOT NULL,
   `akses` varchar(3) NOT NULL COMMENT '1admin,2juri',
-  `id_pengguna` int(3) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -203,19 +233,41 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id_user`, `username`, `upass`, `akses`, `id_pengguna`, `created_at`, `updated_at`) VALUES
-(1, 'noniks', 'tes123', '2', 1, '2023-02-06 03:06:39', NULL),
-(2, 'Ihanp', 'tes999', '1', 2, '2023-02-06 03:06:39', NULL);
+INSERT INTO `users` (`id_user`, `username`, `upass`, `akses`, `created_at`, `updated_at`) VALUES
+(1, 'noniks', 'admin1', '1', '2023-02-06 03:06:39', '2023-03-10 00:53:37'),
+(2, 'Ihanp', 'admin2', '1', '2023-02-06 03:06:39', '2023-03-10 00:53:42'),
+(3, 'jerry', 'admin3', '1', '2023-02-15 03:38:11', '2023-03-10 00:53:33'),
+(4, 'sugiyanto', 'admin4', '1', '2023-02-15 03:38:11', '2023-03-10 00:53:48'),
+(5, 'dedir', 'admin5', '1', '2023-02-15 03:38:11', '2023-03-10 00:53:52'),
+(6, 'bambangs', 'admin6', '1', '2023-02-15 03:38:11', '2023-03-10 00:53:57'),
+(7, 'Juri 1', 'nilai123', '2', '2023-03-01 06:54:12', '2023-03-15 06:21:51'),
+(8, 'Juri 2', 'nilai456', '2', '2023-03-01 06:54:12', '2023-03-15 06:26:37'),
+(9, 'Juri 3', 'nilai789', '2', '2023-03-01 06:54:12', '2023-03-01 06:58:02'),
+(10, 'Juri 4', 'nilai1011', '2', '2023-03-01 06:54:12', '2023-03-15 06:26:46'),
+(11, 'Juri 5', 'nilai1213', '2', '2023-03-01 06:54:34', '2023-03-15 06:26:51');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indeks untuk tabel `document`
+--
+ALTER TABLE `document`
+  ADD PRIMARY KEY (`id_doc`);
+
+--
 -- Indeks untuk tabel `karyawan`
 --
 ALTER TABLE `karyawan`
   ADD PRIMARY KEY (`id_kyw`);
+
+--
+-- Indeks untuk tabel `nilai_risalah`
+--
+ALTER TABLE `nilai_risalah`
+  ADD PRIMARY KEY (`id_nilai`),
+  ADD KEY `constraint_sga` (`pekerjaan_id`);
 
 --
 -- Indeks untuk tabel `pekerjaan`
@@ -250,52 +302,69 @@ ALTER TABLE `tb_sie`
 -- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id_user`),
-  ADD KEY `CONSTRAINT_PENGGUNA` (`id_pengguna`);
+  ADD PRIMARY KEY (`id_user`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `document`
+--
+ALTER TABLE `document`
+  MODIFY `id_doc` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `karyawan`
 --
 ALTER TABLE `karyawan`
-  MODIFY `id_kyw` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_kyw` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `nilai_risalah`
+--
+ALTER TABLE `nilai_risalah`
+  MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `pekerjaan`
 --
 ALTER TABLE `pekerjaan`
-  MODIFY `id_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_pekerjaan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_dept`
 --
 ALTER TABLE `tb_dept`
-  MODIFY `id_dept` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_dept` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_grup`
 --
 ALTER TABLE `tb_grup`
-  MODIFY `id_grup` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_grup` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_sie`
 --
 ALTER TABLE `tb_sie`
-  MODIFY `id_sie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_sie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
+
+--
+-- Ketidakleluasaan untuk tabel `nilai_risalah`
+--
+ALTER TABLE `nilai_risalah`
+  ADD CONSTRAINT `constraint_sga` FOREIGN KEY (`pekerjaan_id`) REFERENCES `pekerjaan` (`id_pekerjaan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `pekerjaan`
@@ -310,12 +379,6 @@ ALTER TABLE `pekerjaan`
 --
 ALTER TABLE `tb_grup`
   ADD CONSTRAINT `constraint_sie` FOREIGN KEY (`sie_id`) REFERENCES `tb_sie` (`id_sie`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ketidakleluasaan untuk tabel `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `CONSTRAINT_PENGGUNA` FOREIGN KEY (`id_pengguna`) REFERENCES `karyawan` (`id_kyw`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

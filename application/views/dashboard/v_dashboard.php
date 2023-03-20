@@ -14,12 +14,12 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
 
-        <title>Dashboard SGA - EHS Dept</title>
+        <title>Home SGA - EHS Dept</title>
 
         <meta name="description" content="" />
 
         <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="<?php echo base_url('assets/sneatadmin/assets');?>/img/favicon/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="<?php echo base_url('assets/sneatadmin/assets');?>/img/favicon/k3logo.ico" />
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -60,8 +60,8 @@
 
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
-                    <a href="index.html" class="app-brand-link">
-                        <span class="app-brand-logo demo">
+                    <a href="" class="app-brand-link">
+                        <!-- <span class="app-brand-logo demo">
                             <svg
                             width="25"
                             viewBox="0 0 25 42"
@@ -113,8 +113,11 @@
                                     </g>
                                 </g>
                             </svg>
-                        </span>
-                        <span class="app-brand-text demo menu-text fw-bolder ms-2">EHS Dept</span>
+                        </span> -->
+                        <div class="avatar">
+                            <img src="<?php echo base_url('assets/sneatadmin/assets');?>/img/avatars/logo k3 hijau.png" alt class="w-px-40 h-auto rounded-circle" />
+                        </div>
+                        <span class="app-brand-text demo menu-text fw-bolder ms-2">SGA System</span>
                     </a>
 
                     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -126,7 +129,7 @@
 
                 <ul class="menu-inner py-1">
                     <li class="menu-header small text-uppercase">
-                        <span class="menu-header-text">Download Berkas SGA</span>
+                        <span class="menu-header-text" style="color: black;">Download Berkas SGA</span>
                     </li>
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -190,7 +193,7 @@
                                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                                         <div class="avatar">
-                                            <img src="<?php echo base_url('assets/sneatadmin/assets');?>/img/avatars/6.png" alt class="w-px-40 h-auto rounded-circle" />
+                                            <img src="<?php echo base_url('assets/sneatadmin/assets');?>/img/avatars/logo k3 hijau.png" alt class="w-px-40 h-auto rounded-circle" />
                                         </div>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end">
