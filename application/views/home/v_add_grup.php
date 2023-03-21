@@ -36,7 +36,7 @@
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label" for="no_hp">Jumlah Anggota</label>
                                 <div class="col-sm-10">
-                                    <input type="number" class="form-control" id="jml" name="jml" placeholder="Tulis Jumlah Anggoa" />
+                                    <input type="number" class="form-control" id="jml" name="jml" placeholder="Tulis Jumlah Anggota" />
                                 </div>
                             </div>
                             <div class="row mb-3">
