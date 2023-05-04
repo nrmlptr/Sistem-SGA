@@ -2,12 +2,12 @@
 
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span>
-            <a href="<?php echo base_url('home/add_dept')?>"><button class='btn btn-secondary'>Tambah Data</button></a>
+            <a href="<?php echo base_url('home/add_dept')?>"><button class='btn btn-secondary'>Tambah Data <i class='bx bx-add-to-queue'></i></button></a>
         </h4>
 
         <!-- Basic Bootstrap Table -->
         <div class="card">
-            <h5 class="card-header">Data Department SGA - PT CBI</h5>
+            <h5 class="card-header">Data Department - PT Century Batteries Indonesia</h5>
             <div class="table-responsive text-nowrap">
                 <table class="table">
                     <thead align="center">

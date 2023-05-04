@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
 
-        <title>EHS-Login</title>
+        <title>SGA System - Login</title>
 
         <meta name="description" content="" />
 
@@ -117,7 +117,7 @@
                                         </svg>
                                     </span> -->
                                     <div class="avatar">
-                                        <img src="<?php echo base_url('assets/sneatadmin/assets');?>/img/avatars/logo k3 hijau.png" alt class="w-px-40 h-auto rounded-circle" />
+                                        <img src="<?php echo base_url('assets/sneatadmin/assets');?>/img/avatars/logok3hijau.png" alt class="w-px-40 h-auto rounded-circle" />
                                     </div>
                                     <span class="app-brand-text demo text-body fw-bolder">EHS Dept</span>
                                 </a>

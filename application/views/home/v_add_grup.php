@@ -54,7 +54,7 @@
                             </div>
                             <div class="row justify-content-end">
                                 <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Save</button> || <button class="btn btn-warning"><a href="<?php echo base_url('home/show_grup');?>">Cancel</a></button>
+                                    <button type="submit" class="btn btn-primary"> Save <i class='bx bxs-save'></i></button> || <button class="btn btn-warning"><a href="<?php echo base_url('home/show_grup');?>"> Cancel <i class='bx bx-x-circle'></i></a></button>
                                 </div>
                             </div>
                         </form>

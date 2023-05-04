@@ -14,6 +14,15 @@
             return $this->db->get()->result_array();
         }
 
+
+        public function getGroupProgress() {
+            $this->db->select('pekerjaan.status as status_pekerjaan, tb_grup.nm_grup');
+            $this->db->from('pekerjaan');
+            $this->db->join('tb_grup','tb_grup.id_grup = pekerjaan.grup_id');
+            $this->db->group_by('tb_grup.nm_grup, pekerjaan.status');
+            return $this->db->get()->result_array();
+        }      
+
         //buat metode by id data sga yg nantinya berfungsi untuk mengambil data berdasarkan id ketika mau di edit atau di hapus
         public function getSGAById($id_pekerjaan){
             $query = $this->db->get_where('pekerjaan', array('id_pekerjaan' => $id_pekerjaan));
@@ -264,6 +273,34 @@
             return $query->result();
         }
 
+        // public function getNilaiByJuri($id_pekerjaan, $nama_juri) {
+        //     $this->db->select('*');
+        //     $this->db->from('nilai_risalah');
+        //     $this->db->where('pekerjaan_id', $id_pekerjaan);
+        //     $this->db->where('nm_juri', $nama_juri);
+        //     $query = $this->db->get();
+        //     return $query->num_rows();
+        // }
+
+        public function getNilaiByJuri($id_pekerjaan, $nama_juri) {
+            $this->db->select('*');
+            $this->db->from('nilai_risalah');
+            $this->db->where('pekerjaan_id', $id_pekerjaan);
+            $this->db->where('nm_juri', $nama_juri);
+            $query = $this->db->get();
+            return $query->result_array(); // mengembalikan hasil dalam bentuk array asosiatif
+        }
+
+        public function getDataNilai($pekerjaan_id, $username_juri) {
+            $this->db->select('*');
+            $this->db->from('nilai_risalah');
+            $this->db->where('nilai_risalah.pekerjaan_id', $pekerjaan_id);
+            $this->db->where('nilai_risalah.nm_juri', $username_juri);
+            $query = $this->db->get();
+            return $query->result();
+        }
+        
+
         //metode untuk ambil nilai total score ditampilkan pada home juri i
         public function getTscore(){
             $this->db->select('total_score');
@@ -312,6 +349,20 @@
         //metode untuk get juri yang sudah kasih nilai atau belum, supaya kondisi button muncul atau tidak
         public function getDataJuri($id_pekerjaan, $nama_juri) {
             return $this->db->get_where('nilai_risalah', array('pekerjaan_id' => $id_pekerjaan, 'nm_juri' => $nama_juri))->num_rows();
+        }
+
+
+        //buat metode model untuk simpan ubah data grup
+        public function prosesUpdateScore($data){
+            $this->db->where('id_nilai', $data['id_nilai']);
+            $query = $this->db->update('nilai_risalah', $data);
+            if($query){
+                redirect('home/viewScore');
+                // echo 'Data berhasil Diperbarui';
+            }else{
+                // echo 'Data gagal diperbarui';
+                redirect('home/ResponDetailInput');
+            }
         }
     }
 

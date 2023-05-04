@@ -113,12 +113,12 @@
         </div>
     </div>
     <h4 class="fw-bold py-3 mb-6"><span class="text-muted fw-light"></span>
-        <a href="<?php echo base_url('home/add_sga')?>"><button class='btn btn-secondary'>Tambah Data</button></a>
-        <a href="<?php echo base_url('excel/index')?>"><button class='btn btn-primary'>Cetak Data</button></a>
+        <a href="<?php echo base_url('home/add_sga')?>"><button class='btn btn-secondary'>Daftar SGA <i class='bx bx-message-square-add'></i></button></a>
+        <a href="<?php echo base_url('excel/index')?>"><button class='btn btn-primary'>Cetak Data <i class='bx bxs-printer'></i></button></a>
     </h4>
     <!-- Basic Bootstrap Table -->
     <div class="card">
-        <h5 class="card-header align-left">DATA PESERTA SGA - PT CBI
+        <h5 class="card-header align-left">DATA PESERTA SGA - PT Century Batteries Indonesia
             <!-- <a href="<?php echo base_url('home/add_sga')?>">
                 <i class="bx bx-plus"></i>
             </a>

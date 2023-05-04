@@ -12,24 +12,24 @@
                 $filter = $_GET['filter']; // Ambil data filter yang dipilih user
                 if($filter == '1'){ // Jika filter nya 1 (per tanggal)
                     $tgl = $_GET['tanggal'];
-                    $label = 'Data SGA PT CBI - Tanggal '.date('d-m-y', strtotime($tgl));
+                    $label = 'Data SGA PT Century Batteries Indonesia - Tanggal '.date('d-m-y', strtotime($tgl));
                     $url_export = 'excel/export?filter=1&tanggal='.$tgl;
                     $pekerjaan = $this->M_Excel->view_by_date($tgl); // Panggil fungsi view_by_date yang ada di Model Excel
                 }else if($filter == '2'){ // Jika filter nya 2 (per bulan)
                     $bulan = $_GET['bulan'];
                     $tahun = $_GET['tahun'];
                     $nama_bulan = array('', 'Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember');
-                    $label = 'Data SGA PT CBI - Bulan '.$nama_bulan[$bulan].' '.$tahun;
+                    $label = 'Data SGA PT Century Batteries Indonesia - Bulan '.$nama_bulan[$bulan].' '.$tahun;
                     $url_export = 'excel/export?filter=2&bulan='.$bulan.'&tahun='.$tahun;
                     $pekerjaan = $this->M_Excel->view_by_month($bulan, $tahun); // Panggil fungsi view_by_month yang ada di Model Excel
                 }else{ // Jika filter nya 3 (per tahun)
                     $tahun = $_GET['tahun'];
-                    $label = 'Data SGA PT CBI - Tahun '.$tahun;
+                    $label = 'Data SGA PT Century Batteries Indonesia - Tahun '.$tahun;
                     $url_export = 'excel/export?filter=3&tahun='.$tahun;
                     $pekerjaan = $this->M_Excel->view_by_year($tahun); // Panggil fungsi view_by_year yang ada di Model Excel
                 }
             }else{ // Jika user tidak mengklik tombol tampilkan
-                $label = 'Semua Data SGA PT CBI';
+                $label = 'Semua Data SGA PT Century Batteries Indonesia';
                 $url_export = 'excel/export';
                 $pekerjaan = $this->M_Excel->view_all(); // Panggil fungsi view_all yang ada di Model Excel
             }
@@ -83,25 +83,25 @@
                 $filter = $_GET['filter']; // Ambil data filter yang dipilih user
                 if($filter == '1'){ // Jika filter nya 1 (per tanggal)
                     $tgl = $_GET['tanggal'];
-                    $label = 'Data SGA PT CBI - Tanggal '.date('d-m-y', strtotime($tgl));
+                    $label = 'Data SGA PT Century Batteries Indonesia - Tanggal '.date('d-m-y', strtotime($tgl));
                     $pekerjaan = $this->M_Excel->view_by_date($tgl); // Panggil fungsi view_by_date yang ada di Model Excel
                 }else if($filter == '2'){ // Jika filter nya 2 (per bulan)
                     $bulan = $_GET['bulan'];
                     $tahun = $_GET['tahun'];
                     $nama_bulan = array('', 'Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember');
-                    $label = 'Data SGA PT CBI - Bulan '.$nama_bulan[$bulan].' '.$tahun;
+                    $label = 'Data SGA PT Century Batteries Indonesia - Bulan '.$nama_bulan[$bulan].' '.$tahun;
                     $pekerjaan = $this->M_Excel->view_by_month($bulan, $tahun); // Panggil fungsi view_by_month yang ada di Model Excel
                 }else{ // Jika filter nya 3 (per tahun)
                     $tahun = $_GET['tahun'];
-                    $label = 'Data SGA PT CBI - Tahun '.$tahun;
+                    $label = 'Data SGA PT Century Batteries Indonesia - Tahun '.$tahun;
                     $pekerjaan = $this->M_Excel->view_by_year($tahun); // Panggil fungsi view_by_year yang ada di Model Excel
                 }
             }else{ // Jika user tidak mengklik tombol tampilkan
-                $label = 'Semua Data SGA PT CBI';
+                $label = 'Semua Data SGA PT Century Batteries Indonesia';
                 $pekerjaan = $this->M_Excel->view_all(); // Panggil fungsi view_all yang ada di Model Excel
             }
             $excel->setActiveSheetIndex(0);
-            $excel->getActiveSheet()->setCellValue('A1', "DATA SGA - PT CBI"); // Set kolom A1 dengan tulisan "DATA SGA - PT CBI"
+            $excel->getActiveSheet()->setCellValue('A1', "DATA SGA - PT Century Batteries Indonesia"); // Set kolom A1 dengan tulisan "DATA SGA - PT Century Batteries Indonesia"
             $excel->getActiveSheet()->mergeCells('A1:E1'); // Set Merge Cell pada kolom A1 sampai E1
             $excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE); // Set bold kolom A1
             $excel->getActiveSheet()->setCellValue('A2', $label); // Set kolom A2 sesuai dengan yang pada variabel $label
@@ -180,7 +180,7 @@
             $excel->getActiveSheet();
             // Proses file excel
             header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-            header('Content-Disposition: attachment; filename="Data SGA PT CBI.xls"'); // Set nama file excel nya
+            header('Content-Disposition: attachment; filename="Data SGA PT Century Batteries Indonesia.xls"'); // Set nama file excel nya
             header('Cache-Control: max-age=0');
             $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
             $write->save('php://output');
