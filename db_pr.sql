@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 20 Mar 2023 pada 10.10
+-- Waktu pembuatan: 04 Bulan Mei 2023 pada 08.21
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -61,11 +61,9 @@ CREATE TABLE `karyawan` (
 
 INSERT INTO `karyawan` (`id_kyw`, `nik`, `nm_karyawan`, `alamat`, `created_at`, `updated_at`) VALUES
 (1, '1001', 'Nonik S', 'Karawang', '2023-02-06 03:00:32', NULL),
-(2, '1002', 'Ihan P', 'Jakarta Utara', '2023-02-06 03:00:32', NULL),
 (3, '1003', 'Ahmad Zaelani', 'Kosambi', '2023-02-15 03:36:11', NULL),
 (4, '1004', 'Sugiyanto', 'Karawang Timur', '2023-02-15 03:36:11', NULL),
-(5, '1005', 'Dedi Ruhmat', 'Jakarta Timur', '2023-02-15 03:36:11', NULL),
-(6, '1006', 'Bambang S', 'Jakarta Utara', '2023-02-15 03:36:11', NULL);
+(5, '1005', 'Dedi Ruhmat', 'Jakarta Timur', '2023-02-15 03:36:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -235,16 +233,14 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `username`, `upass`, `akses`, `created_at`, `updated_at`) VALUES
 (1, 'noniks', 'admin1', '1', '2023-02-06 03:06:39', '2023-03-10 00:53:37'),
-(2, 'Ihanp', 'admin2', '1', '2023-02-06 03:06:39', '2023-03-10 00:53:42'),
-(3, 'jerry', 'admin3', '1', '2023-02-15 03:38:11', '2023-03-10 00:53:33'),
-(4, 'sugiyanto', 'admin4', '1', '2023-02-15 03:38:11', '2023-03-10 00:53:48'),
-(5, 'dedir', 'admin5', '1', '2023-02-15 03:38:11', '2023-03-10 00:53:52'),
-(6, 'bambangs', 'admin6', '1', '2023-02-15 03:38:11', '2023-03-10 00:53:57'),
-(7, 'Juri 1', 'nilai123', '2', '2023-03-01 06:54:12', '2023-03-15 06:21:51'),
-(8, 'Juri 2', 'nilai456', '2', '2023-03-01 06:54:12', '2023-03-15 06:26:37'),
-(9, 'Juri 3', 'nilai789', '2', '2023-03-01 06:54:12', '2023-03-01 06:58:02'),
-(10, 'Juri 4', 'nilai1011', '2', '2023-03-01 06:54:12', '2023-03-15 06:26:46'),
-(11, 'Juri 5', 'nilai1213', '2', '2023-03-01 06:54:34', '2023-03-15 06:26:51');
+(3, 'jerry', 'admin2', '1', '2023-02-15 03:38:11', '2023-05-02 06:53:36'),
+(4, 'sugiyanto', 'admin3', '1', '2023-02-15 03:38:11', '2023-05-02 06:53:46'),
+(5, 'dedir', 'admin4', '1', '2023-02-15 03:38:11', '2023-05-02 06:53:51'),
+(7, 'Juri1', 'nilai123', '2', '2023-03-01 06:54:12', '2023-04-18 07:54:02'),
+(8, 'Juri2', 'nilai456', '2', '2023-03-01 06:54:12', '2023-04-18 08:14:08'),
+(9, 'Juri3', 'nilai789', '2', '2023-03-01 06:54:12', '2023-04-18 08:14:13'),
+(10, 'Juri4', 'nilai1011', '2', '2023-03-01 06:54:12', '2023-04-18 08:14:19'),
+(11, 'Juri5', 'nilai1213', '2', '2023-03-01 06:54:34', '2023-04-18 08:14:25');
 
 --
 -- Indexes for dumped tables
@@ -336,19 +332,19 @@ ALTER TABLE `pekerjaan`
 -- AUTO_INCREMENT untuk tabel `tb_dept`
 --
 ALTER TABLE `tb_dept`
-  MODIFY `id_dept` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_dept` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_grup`
 --
 ALTER TABLE `tb_grup`
-  MODIFY `id_grup` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_grup` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_sie`
 --
 ALTER TABLE `tb_sie`
-  MODIFY `id_sie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_sie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
@@ -379,6 +375,12 @@ ALTER TABLE `pekerjaan`
 --
 ALTER TABLE `tb_grup`
   ADD CONSTRAINT `constraint_sie` FOREIGN KEY (`sie_id`) REFERENCES `tb_sie` (`id_sie`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `tb_sie`
+--
+ALTER TABLE `tb_sie`
+  ADD CONSTRAINT `constraint_dept` FOREIGN KEY (`dept_id`) REFERENCES `tb_dept` (`id_dept`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

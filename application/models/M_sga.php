@@ -15,6 +15,7 @@
         }
 
 
+        // metode untuk cek progress sga
         public function getGroupProgress() {
             $this->db->select('pekerjaan.status as status_pekerjaan, tb_grup.nm_grup');
             $this->db->from('pekerjaan');
@@ -352,7 +353,7 @@
         }
 
 
-        //buat metode model untuk simpan ubah data grup
+        //buat metode model untuk simpan ubah data nilai yang sudah di input juri oleh role admin
         public function prosesUpdateScore($data){
             $this->db->where('id_nilai', $data['id_nilai']);
             $query = $this->db->update('nilai_risalah', $data);
