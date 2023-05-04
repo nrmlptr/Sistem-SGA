@@ -1,0 +1,48 @@
+1.git clone (copy link repository) -> gunanya untuk mendownload project terbaru dari jarak jauh
+2. git branch -> gunanya untuk buat, daftar dan hapus branch.
+	- git branch (nama branch) -> untuk buat branch baru secara lokal
+	- git push -u (copy link remote projectnya) (copy nama branch baru) -> untuk mengupload branch baru ke repository atau project jarak jauh.
+	- git branch atau git branch --list -> untuk lihat kita punya berapa branch
+	- git branch -d (copy nama branchnya yang akan dihapus) -> untuk hapus branch
+	- git checkout (ketik nama branch tujuan) -> untuk pindah branch
+	- git checkout -b (nama branchnya) -> untuk buat branch baru sekaligus cek branch baru tersebut.
+	- git status -> cek informasi terkait branch yg saat ini 
+note : Saat kita membuat, memodifikasi, atau menghapus file, perubahan ini akan terjadi di lokal dan tidak akan dimasukkan dalam commit berikutnya (kecuali kita mengubah konfigurasi).
+Kita perlu menggunakan perintah git add untuk memasukkan perubahan file ke commit selanjutnya.
+
+	- git add (nama file yang mengalami perubahan, atau penambahan file baru) -> untuk menambahkan satu file baru untuk di commit nantinya
+	- git add -A -> untuk menambah semua file sekaligus
+
+note : setelah lakukan git commit untuk eksekusi perubahan yg ada pada file tersebut untuk disimpan secara lokal, kita bisa tambahkan komentar untuk jelasin perubahan apa yg terjadi
+	- git commit -m "pesan commit" 
+
+note : setelah melakukan perubahan, kita akan kirim perubahan tersebut ke server jauh (remote). gunakan push untuk kirim commit lokal tadi ke repositori jauh
+	- git push (copy link remote project) (copy nama branch tujuan)
+
+note : namun jika belum membuat branch, maka perlu juga membuat branch 
+	- git push -u origin (nama branch nya)
+
+note : untuk mendapatkan perubahan atau download versi terbaru dari perubahan yg ada pada branch di repositori jarak jauh bisa gunakan
+	- git pull (copy link remote project)
+
+	git log--oneline -> untuk melihat histori commit sebelumnya
+	
+note : jika ingin membatalkan commit bisa menggunakan 
+	- git revert (kode hash commit) lalu klik shift + q
+
+cara menggunakan git merge :
+- pertama, pindah dulu ke branch yang saat ini dirasa sudah benar projectnya
+	-git checkout (nama branch)
+- perbarui dulu branch tersebut secara lokal
+	-git fetch
+- lalu gabungkan branch yang kita punya dengan branch induk
+	-git merge (nama branch induk)
+
+
+
+- cara menghapus file pada repository
+	- git rm filename
+
+- jika folder pada repository terhapus juga, maka buat folder kembali lalu tambahkan satu file didalam folder tersebut. cek dengan git status lagi, dan lakukan add,commit serta push kembali
+
+
