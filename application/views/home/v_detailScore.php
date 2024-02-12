@@ -333,9 +333,14 @@
 	}
 
     //proses menjalankan fungsi perhitungan
-	$('#keterangan-sga-7-step').on('keyup', function(){
-		hitungPoint();
-	})
+	// $('#keterangan-sga-7-step').on('keyup', function(){
+	// 	hitungPoint();
+	// })
+
+// Proses menjalankan fungsi perhitungan saat nilai input berubah
+    $('#metode-penyusunan, #data-pendukung, #identifikasi-masalah, #safety-mapping, #analysis, #rencana-perbaikan, #laporan-perbaikan, #rank-down, #justifikasi-atasan, #pemahaman-materi, #sistematika, #cara-penyampaian, #keterangan-sga-7-step').on('keyup', function() {
+        hitungPoint();
+    });
 </script>
 
 
