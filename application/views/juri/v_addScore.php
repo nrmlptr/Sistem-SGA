@@ -1,7 +1,7 @@
 <!-- Content -->
 <style>
-    input:out-of-range {
-    border:2px solid red;
+    input:invalid {
+        border-color: red;
     }
 </style>
 <div class="container-xxl flex-grow-1 container-p-y">
@@ -55,6 +55,8 @@
                                 </select>   -->
                             </div>
                         </div>
+			    
+			<!--POINT REPORT-->
                         <div class="row mb-3">
                             
                             <!-- Bordered Table -->
@@ -83,9 +85,9 @@
                                             <tbody>
                                                 <tr  style="color : black">
                                                     <td>
-                                                        <input type="number" class="form-control" id="metode-penyusunan"name="metode_penyusunan_risalah" min="1" max="4"/></td>
+                                                        <input type="number" class="form-control" id="metode-penyusunan"name="metode_penyusunan_risalah" min="1" max="4" required/></td>
                                                     <td>
-                                                        <input type="number" class="form-control" id="data-pendukung" name="data_pendukung_aktivitas_grup" min="1" max="4"/>
+                                                        <input type="number" class="form-control" id="data-pendukung" name="data_pendukung_aktivitas_grup" min="1" max="4" required/>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -96,6 +98,8 @@
                             <!--/ Bordered Table -->
 
                         </div>
+			    
+			<!-- POINT CONTENT -->
                         <div class="row mb-3">
                             
                             <!-- Bordered Table -->
@@ -147,25 +151,25 @@
                                             <tbody>
                                                 <tr  style="color : black">
                                                     <td>
-                                                        <input type="number" class="form-control" id="identifikasi-masalah" name="identifikasi_masalah" min="1" max="4"/>
+                                                        <input type="number" class="form-control" id="identifikasi-masalah" name="identifikasi_masalah" min="1" max="4" required/>
                                                     </td>
                                                     <td>
-                                                        <input type="number" class="form-control" id="safety-mapping" name="safety_mapping" min="1" max="4"/>
+                                                        <input type="number" class="form-control" id="safety-mapping" name="safety_mapping" min="1" max="4" required/>
                                                     </td>
                                                     <td>
-                                                        <input type="number" class="form-control" id="analysis" name="analysis" min="1" max="4"/>
+                                                        <input type="number" class="form-control" id="analysis" name="analysis" min="1" max="4" required/>
                                                     </td>
                                                     <td>
-                                                        <input type="number" class="form-control" id="rencana-perbaikan" name="rencana_perbaikan" min="1" max="4"/>
+                                                        <input type="number" class="form-control" id="rencana-perbaikan" name="rencana_perbaikan" min="1" max="4" required/>
                                                     </td>
                                                     <td>
-                                                    <input type="number" class="form-control" id="laporan-perbaikan" name="laporan_perbaikan" min="1" max="4"/>
+                                                    <input type="number" class="form-control" id="laporan-perbaikan" name="laporan_perbaikan" min="1" max="4" required/>
                                                     </td>
                                                     <td>
-                                                    <input type="number" class="form-control" id="rank-down" name="rank_down" min="1" max="4"/>
+                                                    <input type="number" class="form-control" id="rank-down" name="rank_down" min="1" max="4" required/>
                                                     </td>
                                                     <td>
-                                                    <input type="number" class="form-control" id="justifikasi-atasan" name="justifikasi_atasan" min="1" max="4"/>
+                                                    <input type="number" class="form-control" id="justifikasi-atasan" name="justifikasi_atasan" min="1" max="4" required/>
                                                     </td>  
                                                 </tr>
                                             </tbody>
@@ -176,7 +180,8 @@
                             <!--/ Bordered Table -->
 
                         </div>
-
+			    
+			<!-- POINT PRESENTATION  -->
                         <div class="row mb-3">
                             
                             <!-- Bordered Table -->
@@ -206,13 +211,13 @@
                                             <tbody>
                                                 <tr  style="color : black">
                                                     <td>
-                                                        <input type="number" class="form-control" id="pemahaman-materi" name="pemahaman_materi" min="1" max="4"/>
+                                                        <input type="number" class="form-control" id="pemahaman-materi" name="pemahaman_materi" min="1" max="4" required/>
                                                     </td>
                                                     <td>
-                                                        <input type="number" class="form-control" id="sistematika" name="sistematika" min="1" max="4"/>
+                                                        <input type="number" class="form-control" id="sistematika" name="sistematika" min="1" max="4" required/>
                                                     </td>
                                                     <td>
-                                                        <input type="number" class="form-control" id="cara-penyampaian" name="cara_penyampaian" min="1" max="4"/>
+                                                        <input type="number" class="form-control" id="cara-penyampaian" name="cara_penyampaian" min="1" max="4" required/>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -223,7 +228,8 @@
                             <!--/ Bordered Table -->
 
                         </div>
-
+			    
+			<!-- POINT KETERANGAN  -->
                         <div class="row mb-3">
                             
                             <!-- Bordered Table -->
@@ -245,7 +251,7 @@
                                             <tbody>
                                                 <tr  style="color : black">
                                                     <td>
-                                                        <input type="number" class="form-control" id="keterangan-sga-7-step" name="keterangan_sga_step_7" min="1" max="4"/>
+                                                        <input type="number" class="form-control" id="keterangan-sga-7-step" name="keterangan_sga_step_7" min="1" max="4" required/>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -280,21 +286,21 @@
 <script src="<?php echo base_url('assets');?>/bootstrap/js/bootstrap.min.js"></script>
 <script>
     function hitungPoint(){
-		let metode = $('#metode-penyusunan').val();
-		let datapendukung = $('#data-pendukung').val();
+	let metode = $('#metode-penyusunan').val();
+	let datapendukung = $('#data-pendukung').val();
         let identifikasi = $('#identifikasi-masalah').val();
-		let safety = $('#safety-mapping').val();
+	let safety = $('#safety-mapping').val();
         let analysis = $('#analysis').val();
         let rencana = $('#rencana-perbaikan').val();
-		let laporan = $('#laporan-perbaikan').val();
+	let laporan = $('#laporan-perbaikan').val();
         let rank = $('#rank-down').val();
-		let ja = $('#justifikasi-atasan').val();
+	let ja = $('#justifikasi-atasan').val();
         let pemahaman = $('#pemahaman-materi').val();
         let sistematika = $('#sistematika').val();
-		let penyampaian = $('#cara-penyampaian').val();
+	let penyampaian = $('#cara-penyampaian').val();
         let keterangan = $('#keterangan-sga-7-step').val();
-		// let datapendukung = $('#data-pendukung').val();
-		let total = parseInt(metode) + parseInt(datapendukung) + parseInt(identifikasi) + parseInt(safety) + parseInt(analysis) + parseInt(rencana) + parseInt(laporan) + parseInt(rank) + parseInt(ja) + parseInt(pemahaman) + parseInt(sistematika) + parseInt(penyampaian) + parseInt(keterangan);
+	// let datapendukung = $('#data-pendukung').val();
+	let total = parseInt(metode) + parseInt(datapendukung) + parseInt(identifikasi) + parseInt(safety) + parseInt(analysis) + parseInt(rencana) + parseInt(laporan) + parseInt(rank) + parseInt(ja) + parseInt(pemahaman) + parseInt(sistematika) + parseInt(penyampaian) + parseInt(keterangan);
 
 
         // <?php 
@@ -321,7 +327,17 @@
 	}
 
     //proses menjalankan fungsi perhitungan
-	$('#keterangan-sga-7-step').on('keyup', function(){
-		hitungPoint();
-	})
+	// $('#keterangan-sga-7-step').on('keyup', function(){
+	// 	hitungPoint();
+	// })
+
+    // Proses menjalankan fungsi perhitungan saat nilai input berubah
+    $('#metode-penyusunan, #data-pendukung, #identifikasi-masalah, #safety-mapping, #analysis, #rencana-perbaikan, #laporan-perbaikan, #rank-down, #justifikasi-atasan, #pemahaman-materi, #sistematika, #cara-penyampaian, #keterangan-sga-7-step').on('keyup', function() {
+        hitungPoint();
+    });
+
+    //validation redbox input
+    $('#metode-penyusunan, #data-pendukung, #identifikasi-masalah, #safety-mapping, #analysis, #rencana-perbaikan, #laporan-perbaikan, #rank-down, #justifikasi-atasan, #pemahaman-materi, #sistematika, #cara-penyampaian, #keterangan-sga-7-step').on('input', function() {
+        hitungPoint();
+    });
 </script>
