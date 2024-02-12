@@ -331,7 +331,7 @@
 	// 	hitungPoint();
 	// })
 
-    // Proses menjalankan fungsi perhitungan saat nilai input berubah
+    // Proses menjalankan fungsi perhitungan 
     $('#metode-penyusunan, #data-pendukung, #identifikasi-masalah, #safety-mapping, #analysis, #rencana-perbaikan, #laporan-perbaikan, #rank-down, #justifikasi-atasan, #pemahaman-materi, #sistematika, #cara-penyampaian, #keterangan-sga-7-step').on('keyup', function() {
         hitungPoint();
     });
